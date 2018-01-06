@@ -1,0 +1,43 @@
+
+<div id='reg_form'>
+  <h2>Register</h2>
+  <form (submit)='register($event)' #regForm='ngForm' >
+      <p>First Name</p>
+      <div class='error' *ngIf='first_name.errors'>
+          <p *ngIf='first_name.errors.required'>Required</p>
+          <p *ngIf='first_name.errors.minlength'>Needs to be at least 3 Characters.</p>
+      </div>
+      <input type="text" name="user.first_name" [(ngModel)]="user.first_name" #first_name='ngModel' required minlength='3' />
+      <p>Last Name</p>
+      <div class='error' *ngIf='last_name.errors'>
+          <p *ngIf='last_name.errors.required'>Required</p>
+          <p *ngIf='last_name.errors.minlength'>Needs to be at least 3 Characters.</p>
+      </div>
+      <input type="text" name="last_name" [(ngModel)]="user.last_name" #last_name='ngModel' required minlength='3' />
+      <p>Email</p>
+      <div class='error' *ngIf='email.errors'>
+          <p *ngIf='email.errors.required'>Required</p>
+          <p *ngIf='email.errors.minlength'>Needs to be at least 3 Characters.</p>
+          <p *ngIf='email.errors.pattern'>Please enter valid email.</p>
+      </div>
+      <p class='error' *ngIf='emailError'>{{ emailError.error }}</p>
+      <input type="text" name="email" [(ngModel)]="user.email" #email='ngModel' required minlength='3' pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'/>
+      <p>Password</p>
+      <div class='error' *ngIf='pw.errors'>
+          <p *ngIf='pw.errors.required'>Required</p>
+          <p *ngIf='pw.errors.minlength'>Needs to be at least 8 Characters.</p>
+          <p *ngIf='pw.errors.pattern'>Please include a capital letter, number and symbol.</p>
+      </div>
+      <input type="password" name="password" [(ngModel)]="password" #pw='ngModel' required minlength='8' pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,32}'/>
+      <p>Confirm Password</p>
+      <div class='error' *ngIf='confirm.errors || confirm_password != password'>
+          <p *ngIf='confirm.errors && confirm.errors.required'>Required</p>
+          <p *ngIf='confirm.errors && confirm.errors.minlength'>Needs to be at least 3 Characters.</p>
+          <p *ngIf='confirm_password != password'>Needs to match.</p>
+      </div>
+      <input type="password" name="confirm_password" [(ngModel)]="confirm_password" #confirm='ngModel' required />
+      <br />
+      <input type='submit' [disabled]='!regForm.form.valid || confirm_password != password'/>
+  </form>
+</div>
+<app-login></app-login>

@@ -1,0 +1,36 @@
+<h2>Search Here!</h2>
+<form (submit)='search($event)'>
+    <input type="text" name='searchTerm' [(ngModel)]='searchTerm'>
+    <br />
+    <input type="submit" >
+</form>
+<br />
+<button (click)='reset()'>New Search</button>
+
+<h2>Bikes!</h2>
+<div *ngIf='all_bikes'>
+    <div *ngFor='let bike of all_bikes' class='bike'>
+        <h2>{{ bike.title }}</h2>
+        <img *ngIf='bike.image_url' src="{{ bike.image_url }}" alt="No Picture" class='bike_pic'>
+        <div class='info'>
+            <h4>Price</h4>
+            <p>{{ bike.price }}</p>
+        </div>
+        <div class='info'>
+            <h4>Location</h4>
+            <p>{{ bike.location }}</p>
+        </div>
+        <div class='info'>
+            <h4>Description</h4>
+            <p>{{ bike.description }}</p>
+        </div>
+        <div class='info'>
+            <h4>User</h4>
+            <p>{{ bike.user.first_name }} {{ bike.user.last_name }}</p>
+            <p>{{ bike.user.email }}</p>
+        </div>
+    </div>
+</div>
+<div *ngIf='!all_bikes'>
+    <p>Hmm...Sorry nothing here</p>
+</div>

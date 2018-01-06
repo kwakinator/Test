@@ -1,0 +1,26 @@
+<div *ngIf='_userService.logged_in_user._id'>
+  <app-create (addBike)='addBike($event)'></app-create>
+  <h2>Your Bikes!</h2>
+  <div *ngFor='let bike of user_bikes; let idx = index' class='bike'>
+      <h3>{{ bike.title }}</h3>
+      <img *ngIf='bike.image_url' src="{{ bike.image_url }}" alt="No Picture" class='bike_pic'>
+      <div class='info'>
+          <h4>Price</h4>
+          <p>{{ bike.price }}</p>
+      </div>
+      <div class='info'>
+          <h4>Location</h4>
+          <p>{{ bike.location }}</p>
+      </div>
+      <div class='info'>
+          <h4>Description</h4>
+          <p>{{ bike.description }}</p>
+      </div>
+      <button (click)='deleteBike(bike)'>Delete</button>
+      <button (click)='showForm[idx] = !showForm[idx]'>Edit</button>
+      <app-edit [bike_to_edit]='bike' [index]='idx' *ngIf='showForm[idx]' (hide)='showForm[idx] = !showForm[idx]'></app-edit>
+  </div>
+</div>
+
+<div *ngIf='!_userService.logged_in_user._id'>
+  <p>Log in to see your listings!</p>
