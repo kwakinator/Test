@@ -1,0 +1,14 @@
+<div id='login_form'>
+  <h2>Login</h2>
+  <div *ngIf='_userService.logged_in_user._id'>
+      <p>{{ _userService.logged_in_user.name }} is already logged in, want to log out?</p>
+      <button (click)='logout($event)'>Log Out</button>
+  </div>
+  <form *ngIf='!_userService.logged_in_user._id' (submit)='login_attempt($event)' #loginForm='ngForm'>
+      <p *ngIf='error' class='error'>{{ error.error }}</p>
+      <p>Name</p>
+      <input type="text" name="user.name" [(ngModel)]='user.name' required>
+      <br />
+      <input type="submit" [disabled]='!loginForm.valid'>
+  </form>
+</div>

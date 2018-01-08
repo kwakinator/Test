@@ -1,0 +1,23 @@
+<h2>Current Polls!</h2>
+<div *ngIf='_pollService.logged_in_poll._id'>
+<h3>{{ poll.question }}</h3>
+  <table>
+    <thead>
+      <th>Option</th>
+      <th>Current Count of Votes</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let option of poll_options" class='poll'>
+        <td>{{ option.description }}</td>
+        <td>{{ option.ranking }}</td>
+        <td><button class='up' (click)="voteUp(quote)">Vote Up</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf='!_pollService.logged_in_poll._id'>
+  <p>Create a Poll to see options!</p>
+
+<p></p>

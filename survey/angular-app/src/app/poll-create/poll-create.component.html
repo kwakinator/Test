@@ -1,0 +1,39 @@
+<h2>Put the question and options here:</h2>
+<form (submit)='newPoll($event)' #pollForm='ngForm'>
+    <div class='form_half'>
+        <p>Question</p>
+        <div *ngIf='question.errors' class='error'>
+            <p *ngIf='question.errors.required'>Required</p>
+            <p *ngIf='question.errors.minlength'>Must be 8 characters.</p>
+        </div>
+        <input type='text' name='poll.question' [(ngModel)]='poll.question' #question='ngModel' required minlength='8'/>
+    </div>
+    <div class='form_half'>
+        <p>Option 1</p>
+        <div *ngIf='option1.errors' class='error'>
+            <p *ngIf='option1.errors.required'>Required</p>
+            <p *ngIf='option1.errors.minlength'>Must be 3 characters.</p>
+        </div>
+        <input type='text' name='poll.option1' [(ngModel)]='poll.option1' #option1='ngModel' required minlength='3'/>
+        <p>Option 2</p>
+        <div *ngIf='option2.errors' class='error'>
+            <p *ngIf='option2.errors.required'>Required</p>
+            <p *ngIf='option2.errors.minlength'>Must be 3 characters.</p>
+        </div>
+        <input type='text' name='poll.option2' [(ngModel)]='poll.option2' #option2='ngModel' required minlength='3'/>
+        <p>Option 3</p>
+        <div *ngIf='option3.errors' class='error'>
+            <p *ngIf='option3.errors.required'>Required</p>
+            <p *ngIf='option3.errors.minlength'>Must be 3 characters.</p>
+        </div>
+        <input type='text' name='poll.option3' [(ngModel)]='poll.option3' #option3='ngModel' required minlength='3'/>
+        <p>Option 4</p>
+        <div *ngIf='option4.errors' class='error'>
+            <p *ngIf='option4.errors.required'>Required</p>
+            <p *ngIf='option4.errors.minlength'>Must be 3 characters.</p>
+        </div>
+        <input type='text' name='poll.option4' [(ngModel)]='poll.option4' #option4='ngModel' required minlength='3'/>
+        <br />
+        <input type="submit" [disabled]='pollForm.valid'>
+    </div>
+</form>
